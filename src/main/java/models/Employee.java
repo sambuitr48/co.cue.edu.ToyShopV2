@@ -10,7 +10,7 @@ import java.util.Date;
 @NoArgsConstructor
 @ToString
 @Builder
-public class Employees {
+public class Employee {
     private int employee_id;
     private String employee_name;
     private Date employee_age; //Revisar

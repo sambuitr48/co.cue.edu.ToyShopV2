@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 public class Order {
     private int order_id;
-    private Clients client;
-    private Employees employee;
+    private Client client;
+    private Employee employee;
     private LocalDateTime purchase_date; //Revisar
 }

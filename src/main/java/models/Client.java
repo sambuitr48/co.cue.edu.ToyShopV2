@@ -9,8 +9,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Builder
-public class Clients {
+@Builder //Patrón de diseños para crear objetos de forma más fácil.
+public class Client {
     private int client_cedula;
     private String client_name;
     private Date client_age; //Revisar

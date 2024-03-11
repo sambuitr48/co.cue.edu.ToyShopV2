@@ -8,8 +8,8 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 @Builder
-public class Detalle {
-    private int detalle_id;
+public class Detail {
+    private int detail_id;
     private Order order;
     private Toy toy;
     private int quantity;
