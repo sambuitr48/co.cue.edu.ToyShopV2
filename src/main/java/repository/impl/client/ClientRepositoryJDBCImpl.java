@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClientRepositoryJDBCImpl implements Repository<Client> {
-
     private Connection getConnection() throws SQLException{
         return DataBaseConnection.getInstance();
     }
@@ -26,7 +25,7 @@ public class ClientRepositoryJDBCImpl implements Repository<Client> {
         try (Statement statement = getConnection().createStatement();
         ResultSet resultSet = statement.executeQuery(
                 """ 
-                    /*/Codigo sql 
+                    SELECT * FROM clients 
                     """
         )) {
             while (resultSet.next()){
@@ -45,7 +44,8 @@ public class ClientRepositoryJDBCImpl implements Repository<Client> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                            /*/codigo sql
+                            SELECT * FROM clients 
+                            WHERE cliennt_cedula = ?
                             """
                 )
         ) {
@@ -65,7 +65,8 @@ public class ClientRepositoryJDBCImpl implements Repository<Client> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                            /*/ codigo sql
+                            INSERT INTO clients (client_cedula, client_name, client_age) 
+                            VALUES (?, ?, ?)
                             """
                 )
         ) {
@@ -82,7 +83,8 @@ public class ClientRepositoryJDBCImpl implements Repository<Client> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                            /*/codigo sql
+                            DELETE FROM clients 
+                            WHERE client_cedula = ?
                             """
                 )) {
             preparedStatement.setInt(1, id);
@@ -98,7 +100,9 @@ public class ClientRepositoryJDBCImpl implements Repository<Client> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                            /*/ codigo sql
+                            UPDATE clients 
+                            SET client_name = ?, client_age = ? 
+                            WHERE client_cedula = ?
                             """
                 )) {
             preparedStatement.setInt(1, client.getClient_cedula());

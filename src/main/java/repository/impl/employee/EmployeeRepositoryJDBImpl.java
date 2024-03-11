@@ -27,7 +27,7 @@ public class EmployeeRepositoryJDBImpl implements Repository<Employee> {
         try (Statement statement = getConnection().createStatement();
              ResultSet resultSet = statement.executeQuery(
                      """ 
-                         /*/Codigo sql 
+                          SELECT * FROM employees
                          """
              )) {
             while (resultSet.next()){
@@ -47,7 +47,8 @@ public class EmployeeRepositoryJDBImpl implements Repository<Employee> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                            /*/codigo sql
+                             SELECT * FROM employees 
+                             WHERE employee_id = ?
                             """
                 )
         ) {
@@ -67,7 +68,8 @@ public class EmployeeRepositoryJDBImpl implements Repository<Employee> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                            /*/ codigo sql
+                            INSERT INTO employees (employee_name = ? , employee_age = ?) 
+                            VALUES (?,?)
                             """
                 )
         ) {
@@ -84,7 +86,8 @@ public class EmployeeRepositoryJDBImpl implements Repository<Employee> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                            /*/codigo sql
+                            DELETE FROM employees 
+                            WHERE employee_id = ?
                             """
                 )) {
             preparedStatement.setInt(1, id);
@@ -100,7 +103,9 @@ public class EmployeeRepositoryJDBImpl implements Repository<Employee> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                            /*/ codigo sql
+                            UPDATE employees 
+                            SET employee_name = ?, employee_age = ? 
+                            WHERE employee_id = ?
                             """
                 )) {
             preparedStatement.setInt(1, employee.getEmployee_id());

@@ -5,36 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c99ce88a-f645-43f2-adb3-e25e3f3cd49b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mapping/dto/ClientDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mapping/dto/DetailDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mapping/dto/EmployeeDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mapping/dto/OrderDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mapping/dto/ToyDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mapping/mappers/ClientMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mapping/mappers/DetailMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mapping/mappers/EmployeeMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mapping/mappers/OrderMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mapping/mappers/ToyMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/repository/Repository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/repository/impl/Detail/DetailRepositoryFilesImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/repository/impl/Detail/DetailRepositoryJDBCImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/repository/impl/client/ClientRepositoryFilesImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/repository/impl/client/ClientRepositoryJDBCImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/repository/impl/employee/EmployeeRepositoryFilesImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/repository/impl/employee/EmployeeRepositoryJDBImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/repository/impl/order/OrderRepositoryFilesImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/repository/impl/order/OrderRepositoryJDBCImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/repository/impl/toy/ToyRepositoryFilesImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/repository/impl/toy/ToyRepositoryJDBCImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/services/Service.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/services/impl/ServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/application/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/Clients.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/Detalle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Detail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/Employees.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/Toy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Toy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/impl/client/ClientRepositoryJDBCImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/impl/client/ClientRepositoryJDBCImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/impl/employee/EmployeeRepositoryJDBImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/impl/employee/EmployeeRepositoryJDBImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/impl/toy/ToyRepositoryJDBCImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/impl/toy/ToyRepositoryJDBCImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +66,7 @@
       <workItem from="1709727003224" duration="5604000" />
       <workItem from="1709999597504" duration="834000" />
       <workItem from="1710003488258" duration="24664000" />
-      <workItem from="1710115277142" duration="1407000" />
+      <workItem from="1710115277142" duration="5568000" />
     </task>
     <servers />
   </component>

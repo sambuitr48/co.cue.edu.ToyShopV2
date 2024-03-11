@@ -30,7 +30,7 @@ public class ToyRepositoryJDBCImpl implements Repository<Toy> {
         try (Statement statement = getConnection().createStatement();
              ResultSet resultSet = statement.executeQuery(
                      """ 
-                         /*/Codigo sql 
+                         SELECT * FROM toy
                          """
              )) {
             while (resultSet.next()){
@@ -48,7 +48,8 @@ public class ToyRepositoryJDBCImpl implements Repository<Toy> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                            /*/codigo sql
+                            SELECT * FROM toy 
+                            WHERE toy_id = ?
                             """
                 )
         ) {
@@ -68,7 +69,8 @@ public class ToyRepositoryJDBCImpl implements Repository<Toy> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                            /*/ codigo sql
+                            INSERT INTO toy(toy_name,toy_category,toy_price,toy_stock) 
+                            VALUES (?,?,?,?)
                             """
                 )
         ) {
@@ -87,7 +89,8 @@ public class ToyRepositoryJDBCImpl implements Repository<Toy> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                            /*/codigo sql
+                            DELETE FROM toy 
+                            WHERE toy_id = ?
                             """
                 )) {
             preparedStatement.setInt(1, id);
@@ -102,7 +105,9 @@ public class ToyRepositoryJDBCImpl implements Repository<Toy> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                            /*/ codigo 
+                            UPDATE toy 
+                            SET toy_name = ?, toy_category = ?, toy_price = ?, toy_stock = ?  
+                            WHERE toy_id = ?
                             """
                 )
         ) {
