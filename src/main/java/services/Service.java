@@ -1,8 +1,20 @@
 package services;
 
+import mapping.dto.ClientDTO;
+import mapping.dto.EmployeeDTO;
+import mapping.dto.ToyDTO;
+
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Future;
 
 public interface Service<T> {
-    void add(T t);
-    List<T> listAll();
+    void addToy(ToyDTO toyDTO);
+    ToyDTO search(Integer id) throws SQLException;
+    void addEmployees(EmployeeDTO employeeDTO);
+    void addClient(ClientDTO clientDTO);
+    List<ClientDTO> listClients();
+    List<EmployeeDTO> listEmployees();
+    List<ToyDTO> listToys();
 }

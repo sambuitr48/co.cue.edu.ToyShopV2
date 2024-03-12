@@ -5,32 +5,35 @@ import models.*;
 import models.Detail;
 import models.Detail;
 import repository.Repository;
+import repository.impl.client.ClientRepositoryJDBCImpl;
+import repository.impl.employee.EmployeeRepositoryJDBImpl;
+import repository.impl.order.OrderRepositoryJDBCImpl;
+import repository.impl.toy.ToyRepositoryJDBCImpl;
 
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
+//En este sale severo error
 public class DetailRepositoryJDBCImpl implements Repository<Detail> {
     private Connection getConnection() throws SQLException {
         return DataBaseConnection.getInstance();
     }
     private Detail createDetail(ResultSet resultSet) throws SQLException {
         Detail detail = new Detail();
-        detail.setDetail_id(resultSet.getInt("detalle_id"));
-        Order order = new Order(); //revisar ya qe no se si se puede instanciar de esta forma el objeto para hacer la relación de objetos
-        order.setOrder_id(resultSet.getInt("order_id"));
+        OrderRepositoryJDBCImpl orderRepositoryJDBC = new OrderRepositoryJDBCImpl();
+        ToyRepositoryJDBCImpl toyRepositoryJDBC = new ToyRepositoryJDBCImpl();
+        detail.setDetail_id(resultSet.getInt("detail_id"));
+        int idOrder = resultSet.getInt("id_order");
+        Order order = orderRepositoryJDBC.byId(idOrder);
         detail.setOrder(order);
-        detail.setToy(new Toy(
-                resultSet.getInt("toy_id"),
-                resultSet.getString("toy_name"),
-                resultSet.getString("toy_category"),
-                resultSet.getDouble("toy_price"),
-                resultSet.getInt("toy_stock")
-        ));
+        int idToy = resultSet.getInt("id_toy");
+        Toy toy = toyRepositoryJDBC.byId(idToy);
+        detail.setToy(toy);
         detail.setQuantity(resultSet.getInt("quantity"));
         detail.setUnit_price(resultSet.getDouble("unit_price"));
         detail.setTotal_Price(resultSet.getDouble("total_price"));
+
         return detail;
     }
 
@@ -40,7 +43,10 @@ public class DetailRepositoryJDBCImpl implements Repository<Detail> {
         try (Statement statement = getConnection().createStatement();
              ResultSet resultSet = statement.executeQuery(
                      """ 
-                         /*/Codigo sql 
+                         SELECT detalle.,order.,toy.*
+                         FROM detalle
+                         INNER JOIN order ON detalle.id_order = order.order_id
+                         INNER JOIN toy ON detalle.id_toy = toy.toy_id
                          """
              )) {
             while (resultSet.next()){
@@ -59,8 +65,12 @@ public class DetailRepositoryJDBCImpl implements Repository<Detail> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                            /*/codigo sql
-                            """
+                        SELECT detalle.,order.,toy.*
+                        FROM detalle
+                        INNER JOIN order ON detalle.id_order = order.order_id
+                        INNER JOIN toy ON detalle.id_toy = toy.toy_id
+                        WHERE detail_id = ?
+                        """
                 )
         ) {
             preparedStatement.setInt(1, id);
@@ -79,16 +89,16 @@ public class DetailRepositoryJDBCImpl implements Repository<Detail> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                            /*/ codigo sql
+                            INSERT INTO detalle(id_order,id_toy,quantity,unit_price,total_price) 
+                            VALUES (?,?,?,?,?)
                             """
                 )
         ) {
-            preparedStatement.setInt(1, detail.getDetail_id());
-            preparedStatement.setInt(2, detail.getOrder().getOrder_id());
-            preparedStatement.setString(3, detail.getToy().getToy_name());
-            preparedStatement.setInt(4, detail.getQuantity());
-            preparedStatement.setDouble(5, detail.getUnit_price());
-            preparedStatement.setDouble(6, detail.getTotal_Price());
+            preparedStatement.setInt(1, detail.getOrder().getOrder_id());
+            preparedStatement.setString(2, detail.getToy().getToy_name());
+            preparedStatement.setInt(3, detail.getQuantity());
+            preparedStatement.setDouble(4, detail.getUnit_price());
+            preparedStatement.setDouble(5, detail.getQuantity()*detail.getUnit_price());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -99,7 +109,8 @@ public class DetailRepositoryJDBCImpl implements Repository<Detail> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                            /*/codigo sql
+                            DELETE detalle 
+                            WHERE detail_id=?
                             """
                 )) {
             preparedStatement.setInt(1, id);
@@ -115,17 +126,20 @@ public class DetailRepositoryJDBCImpl implements Repository<Detail> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                            /*/ codigo
+                            UPDATE detalle 
+                            SET id_order = ?, id_toy = ?, quantity = ?, unit_price = ?, total_price = ? 
+                            WHERE detail_id = ?
                             """
                 )) {
-            preparedStatement.setInt(1, detail.getDetail_id());
-            preparedStatement.setInt(2, detail.getOrder().getOrder_id());
-            preparedStatement.setString(3, detail.getToy().getToy_name());
-            preparedStatement.setInt(4, detail.getQuantity());
-            preparedStatement.setDouble(5, detail.getUnit_price());
-            preparedStatement.setDouble(6, detail.getTotal_Price());
+            preparedStatement.setInt(1, detail.getOrder().getOrder_id());
+            preparedStatement.setString(2, detail.getToy().getToy_name());
+            preparedStatement.setInt(3, detail.getQuantity());
+            preparedStatement.setDouble(4, detail.getUnit_price());
+            preparedStatement.setDouble(5, detail.getTotal_Price());
+            preparedStatement.setInt(6, detail.getDetail_id());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
 }

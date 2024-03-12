@@ -7,6 +7,7 @@ import models.Order;
 import repository.Repository;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,12 @@ public class OrderRepositoryJDBCImpl implements Repository<Order> {
                 resultSet.getDate("employee_age")
         ));
         java.sql.Date dbSqlDate = resultSet.getDate("purchase_date");
+        if (dbSqlDate != null) {
+            LocalDate fechaRegistro = dbSqlDate.toLocalDate();
+            order.setPurchase_date(fechaRegistro.atStartOfDay()); // Convierte LocalDate a LocalDateTime al inicio del día
+        } else {
+            order.setPurchase_date(null);
+        }
         return order;
     }
 
@@ -38,7 +45,10 @@ public class OrderRepositoryJDBCImpl implements Repository<Order> {
         try (Statement statement = getConnection().createStatement();
              ResultSet resultSet = statement.executeQuery(
                      """ 
-                         /*/Codigo sql 
+                         SELECT order., clients., employees.* 
+                         FROM order 
+                         INNER JOIN clients on order.client_id = clients.client_id
+                         INNER JOIN employees on order.employee_id = employees.employee_id
                          """
              )) {
             while (resultSet.next()){
@@ -58,7 +68,11 @@ public class OrderRepositoryJDBCImpl implements Repository<Order> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                            /*/codigo sql
+                         SELECT order., clients., employees.* 
+                         FROM order 
+                         INNER JOIN clients on order.client_id = clients.client_id
+                         INNER JOIN employees on order.employee_id = employees.employee_id
+                         WHERE order_id = ?
                             """
                 )
         ) {
@@ -78,15 +92,14 @@ public class OrderRepositoryJDBCImpl implements Repository<Order> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                            /*/ codigo sql
+                            INSERT INTO order(íd_client,id_employee,purchase_date)
                             """
                 )
         ) {
-            preparedStatement.setInt(1, order.getOrder_id());
-            preparedStatement.setString(2, order.getClient().getClient_name());
-            preparedStatement.setString(3, order.getEmployee().getEmployee_name());
+            preparedStatement.setInt(1, order.getClient().getClient_cedula());
+            preparedStatement.setInt(2, order.getEmployee().getEmployee_id());
             LocalDateTime purchaseDate = order.getPurchase_date();
-            preparedStatement.setDate(4, Date.valueOf(purchaseDate.toLocalDate()));
+            preparedStatement.setDate(3, Date.valueOf(purchaseDate.toLocalDate()));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -97,7 +110,8 @@ public class OrderRepositoryJDBCImpl implements Repository<Order> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                            /*/codigo sql
+                            DELETE FROM order 
+                            WHERE order_id = ?
                             """
                 )) {
             preparedStatement.setInt(1, id);
@@ -113,14 +127,15 @@ public class OrderRepositoryJDBCImpl implements Repository<Order> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                            /*/ codigo
+                            UPDATE order SET íd_client = ? , id_employee = ? , purchase_date = ? 
+                            WHERE order_id = ?
                             """
                 )) {
-            preparedStatement.setInt(1, order.getOrder_id());
-            preparedStatement.setString(2, order.getClient().getClient_name());
-            preparedStatement.setString(3, order.getEmployee().getEmployee_name());
+            preparedStatement.setInt(1, order.getClient().getClient_cedula());
+            preparedStatement.setInt(2, order.getEmployee().getEmployee_id());
             LocalDateTime purchaseDate = order.getPurchase_date();
-            preparedStatement.setDate(4, Date.valueOf(purchaseDate.toLocalDate()));
+            preparedStatement.setDate(3, Date.valueOf(purchaseDate.toLocalDate()));
+            preparedStatement.setInt(4,order.getOrder_id());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

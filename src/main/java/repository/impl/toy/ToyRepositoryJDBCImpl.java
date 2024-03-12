@@ -74,11 +74,10 @@ public class ToyRepositoryJDBCImpl implements Repository<Toy> {
                             """
                 )
         ) {
-            preparedStatement.setInt(1, toy.getToy_id());
-            preparedStatement.setString(2, toy.getToy_name());
-            preparedStatement.setString(3, toy.getToy_category());
-            preparedStatement.setDouble(4, toy.getToy_price());
-            preparedStatement.setInt(5, toy.getToy_stock());
+            preparedStatement.setString(1, toy.getToy_name());
+            preparedStatement.setString(2, toy.getToy_category());
+            preparedStatement.setDouble(3, toy.getToy_price());
+            preparedStatement.setInt(4, toy.getToy_stock());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -89,7 +88,7 @@ public class ToyRepositoryJDBCImpl implements Repository<Toy> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                            DELETE FROM toy 
+                            DELETE FROM toy
                             WHERE toy_id = ?
                             """
                 )) {
@@ -106,17 +105,16 @@ public class ToyRepositoryJDBCImpl implements Repository<Toy> {
                 .prepareStatement(
                         """
                             UPDATE toy 
-                            SET toy_name = ?, toy_category = ?, toy_price = ?, toy_stock = ?  
+                            SET toy_name = ?,toy_category = ?,toy_price = ?,toy_stock = ? 
                             WHERE toy_id = ?
                             """
                 )
         ) {
-
-            preparedStatement.setInt(1, toy.getToy_id());
-            preparedStatement.setString(2, toy.getToy_name());
-            preparedStatement.setString(3, toy.getToy_category());
-            preparedStatement.setDouble(4, toy.getToy_price());
-            preparedStatement.setInt(5, toy.getToy_stock());
+            preparedStatement.setString(1, toy.getToy_name());
+            preparedStatement.setString(2, toy.getToy_category());
+            preparedStatement.setDouble(3, toy.getToy_price());
+            preparedStatement.setInt(4, toy.getToy_stock());
+            preparedStatement.setInt(5,toy.getToy_id());
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

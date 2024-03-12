@@ -23,11 +23,11 @@ public class ClientRepositoryJDBCImpl implements Repository<Client> {
     public List<Client> list() {
         List<Client> clientList = new ArrayList<>();
         try (Statement statement = getConnection().createStatement();
-        ResultSet resultSet = statement.executeQuery(
-                """ 
-                    SELECT * FROM clients 
-                    """
-        )) {
+             ResultSet resultSet = statement.executeQuery(
+                     """ 
+                         SELECT * FROM clients
+                         """
+             )) {
             while (resultSet.next()){
                 Client client = createClient(resultSet);
                 clientList.add(client);
@@ -45,7 +45,7 @@ public class ClientRepositoryJDBCImpl implements Repository<Client> {
                 .prepareStatement(
                         """
                             SELECT * FROM clients 
-                            WHERE cliennt_cedula = ?
+                            WHERE Client_cedula = ?
                             """
                 )
         ) {
@@ -62,17 +62,15 @@ public class ClientRepositoryJDBCImpl implements Repository<Client> {
 
     @Override
     public void save(Client client) {
-        try (PreparedStatement preparedStatement = getConnection()
-                .prepareStatement(
-                        """
-                            INSERT INTO clients (client_cedula, client_name, client_age) 
-                            VALUES (?, ?, ?)
-                            """
-                )
-        ) {
-            preparedStatement.setInt(1, client.getClient_cedula());
-            preparedStatement.setString(2, client.getClient_name());
-            preparedStatement.setDate(3, (Date) client.getClient_age()); //Revisar
+        try (PreparedStatement preparedStatement = getConnection().prepareStatement(
+                """
+                    INSERT INTO clients(client_cedula,client_name,client_age) 
+                    VALUES (?,?,?)
+                    """
+        )){
+            preparedStatement.setInt(1,client.getClient_cedula());
+            preparedStatement.setString(2,client.getClient_name());
+            preparedStatement.setDate(3, (Date) client.getClient_age());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -84,7 +82,7 @@ public class ClientRepositoryJDBCImpl implements Repository<Client> {
                 .prepareStatement(
                         """
                             DELETE FROM clients 
-                            WHERE client_cedula = ?
+                            WHERE Client_cedula=?
                             """
                 )) {
             preparedStatement.setInt(1, id);
@@ -101,13 +99,13 @@ public class ClientRepositoryJDBCImpl implements Repository<Client> {
                 .prepareStatement(
                         """
                             UPDATE clients 
-                            SET client_name = ?, client_age = ? 
-                            WHERE client_cedula = ?
+                            SET Client_name = ?, Client_age = ? 
+                            WHERE Client_cedula = ?
                             """
                 )) {
-            preparedStatement.setInt(1, client.getClient_cedula());
-            preparedStatement.setString(2, client.getClient_name());
-            preparedStatement.setDate(3, (Date) client.getClient_age()); //Revisar
+            preparedStatement.setString(1, client.getClient_name());
+            preparedStatement.setDate(2, (Date) client.getClient_age()); //Revisar
+            preparedStatement.setInt(3,client.getClient_cedula());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

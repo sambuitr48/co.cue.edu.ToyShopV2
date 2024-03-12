@@ -27,7 +27,7 @@ public class EmployeeRepositoryJDBImpl implements Repository<Employee> {
         try (Statement statement = getConnection().createStatement();
              ResultSet resultSet = statement.executeQuery(
                      """ 
-                          SELECT * FROM employees
+                         SELECT * FROM employees
                          """
              )) {
             while (resultSet.next()){
@@ -47,8 +47,7 @@ public class EmployeeRepositoryJDBImpl implements Repository<Employee> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                             SELECT * FROM employees 
-                             WHERE employee_id = ?
+                            SELECT * FROM employees WHERE employee_id = ?
                             """
                 )
         ) {
@@ -68,14 +67,13 @@ public class EmployeeRepositoryJDBImpl implements Repository<Employee> {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement(
                         """
-                            INSERT INTO employees (employee_name = ? , employee_age = ?) 
+                            INSERT INTO employees (employee_name=? , employee_age=?) 
                             VALUES (?,?)
                             """
                 )
         ) {
-            preparedStatement.setInt(1, employee.getEmployee_id());
-            preparedStatement.setString(2, employee.getEmployee_name());
-            preparedStatement.setDate(3, (Date) employee.getEmployee_age()); //Revisar
+            preparedStatement.setString(1, employee.getEmployee_name());
+            preparedStatement.setDate(2, (Date) employee.getEmployee_age()); //Revisar
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -104,13 +102,13 @@ public class EmployeeRepositoryJDBImpl implements Repository<Employee> {
                 .prepareStatement(
                         """
                             UPDATE employees 
-                            SET employee_name = ?, employee_age = ? 
+                            SET employee_name = ? , employee_age = ? 
                             WHERE employee_id = ?
                             """
                 )) {
-            preparedStatement.setInt(1, employee.getEmployee_id());
-            preparedStatement.setString(2, employee.getEmployee_name());
-            preparedStatement.setDate(3, (Date) employee.getEmployee_age()); //Revisar
+            preparedStatement.setString(1, employee.getEmployee_name());
+            preparedStatement.setDate(2, (Date) employee.getEmployee_age()); //Revisar
+            preparedStatement.setInt(3,employee.getEmployee_id());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

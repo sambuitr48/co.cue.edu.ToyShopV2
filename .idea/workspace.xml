@@ -5,11 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c99ce88a-f645-43f2-adb3-e25e3f3cd49b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/application/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/impl/Detail/DetailRepositoryFilesImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/impl/Detail/DetailRepositoryJDBCImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/impl/Detail/DetailRepositoryJDBCImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/impl/client/ClientRepositoryFilesImpl.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/repository/impl/client/ClientRepositoryJDBCImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/impl/client/ClientRepositoryJDBCImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/impl/employee/EmployeeRepositoryFilesImpl.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/repository/impl/employee/EmployeeRepositoryJDBImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/impl/employee/EmployeeRepositoryJDBImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/impl/order/OrderRepositoryFilesImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/impl/order/OrderRepositoryJDBCImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/impl/order/OrderRepositoryJDBCImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/impl/toy/ToyRepositoryFilesImpl.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/repository/impl/toy/ToyRepositoryJDBCImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/impl/toy/ToyRepositoryJDBCImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/impl/client/ClientServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/impl/detail/DetailServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/impl/employee/EmployeeServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/impl/order/OrderServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/impl/toy/ToyServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/impl/toy/ToyServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,11 +52,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/ELIANA/Desktop/co.cue.edu.ToyShopV2.0",
+    "last_opened_file_path": "C:/Users/ELIANA/Desktop/ToyStore2.0-master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -52,6 +66,26 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="application.Main" />
+      <module name="co.cue.edu.ToyShopV2.0" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="application.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -66,7 +100,9 @@
       <workItem from="1709727003224" duration="5604000" />
       <workItem from="1709999597504" duration="834000" />
       <workItem from="1710003488258" duration="24664000" />
-      <workItem from="1710115277142" duration="5568000" />
+      <workItem from="1710115277142" duration="13503000" />
+      <workItem from="1710135509894" duration="28000" />
+      <workItem from="1710166218533" duration="20565000" />
     </task>
     <servers />
   </component>
